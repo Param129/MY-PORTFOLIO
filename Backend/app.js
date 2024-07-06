@@ -30,7 +30,7 @@ app.use(fileUpload({
 
 
 // all routes
-app.use("/api/v1/messsage",messageRouter);
+app.use("/api/v1/message",messageRouter);
 
 
 // database connection
