@@ -7,6 +7,11 @@ import dbConnection from "./database/DBconnection.js";
 import { errorMiddleware } from "./middlewares/error.js";
 import messageRouter from "./routes/messageRouter.js"
 import userRouter from "./routes/userRouter.js"
+import timelineRouter from "./routes/timelineRouter.js"
+import softwareApplicationRouter from "./routes/softwareApplicationRouter.js"
+import skillRouter from "./routes/skillRouter.js";
+import projectRouter from "./routes/projectRouter.js";
+
 
 const app =express();
 dotenv.config({path:"./config/config.env"});
@@ -32,6 +37,11 @@ app.use(fileUpload({
 // all routes
 app.use("/api/v1/message",messageRouter);
 app.use("/api/v1/user",userRouter);
+app.use("/api/v1/timeline", timelineRouter);
+app.use("/api/v1/softwareapplication", softwareApplicationRouter);
+app.use("/api/v1/skill", skillRouter);
+app.use("/api/v1/project", projectRouter);
+
 
 // database connection
 dbConnection();
