@@ -22,7 +22,7 @@ import ManageTimeline from './pages/ManageTimeline'
 import ManageProjects from './pages/ManageProjects'
 import ViewProject from './pages/ViewProject'
 import UpdateProject from './pages/UpdateProject'
-
+import "./App.css"
 
 const App = () => {
 

@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import SpecialLoadingButton from "./SpecialLoadingButton";
 import { Link } from "react-router-dom";
 
+
 const UpdateProfile = () => {
   const { user, loading, error, isUpdated, message } = useSelector(
     (state) => state.user

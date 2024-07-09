@@ -127,6 +127,9 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
     githubURL: req.body.githubURL,
     portfolioURL: req.body.portfolioURL,
     linkedInURL: req.body.linkedInURL,
+    instagramURL: req.body.instagramURL,
+    facebookURL: req.body.facebookURL,
+    twitterURL: req.body.twitterURL,
   };
   if (req.files && req.files.avatar) {
     const avatar = req.files.avatar;

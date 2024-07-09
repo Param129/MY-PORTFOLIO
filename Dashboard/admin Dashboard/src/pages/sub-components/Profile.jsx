@@ -72,7 +72,7 @@ const Profile = () => {
                 <Input type="text" defaultValue={user.instagramURL} disabled />
               </div>
               <div className="grid gap-2">
-                <Label>Twitter(X) URL</Label>
+                <Label>Twitter URL</Label>
                 <Input type="text" defaultValue={user.twitterURL} disabled />
               </div>
               <div className="grid gap-2">
