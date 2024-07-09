@@ -53,7 +53,16 @@ const userSchema = new mongoose.Schema({
   githubURL: {
     type: String,
   },
+  instagramURL: {
+    type: String,
+  },
+  twitterURL: {
+    type: String,
+  },
   linkedInURL: {
+    type: String,
+  },
+  facebookURL: {
     type: String,
   },
   resetPasswordToken: String,
