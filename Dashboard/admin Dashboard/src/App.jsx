@@ -2,7 +2,9 @@ import React from 'react'
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getUser } from "./store/slices/userSlice";
 
 
 
@@ -23,6 +25,18 @@ import UpdateProject from './pages/UpdateProject'
 
 
 const App = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUser()); // now if we refresh then user remain in loaduser 
+    // dispatch(getAllSkills());
+    // dispatch(getAllSoftwareApplications());
+    // dispatch(getAllTimeline());
+    // dispatch(getAllMessages());
+    // dispatch(getAllProjects());
+  }, []);
+
   return (
     <Router>
       <Routes>
