@@ -11,6 +11,7 @@ import timelineRouter from "./routes/timelineRouter.js"
 import softwareApplicationRouter from "./routes/softwareApplicationRouter.js"
 import skillRouter from "./routes/skillRouter.js";
 import projectRouter from "./routes/projectRouter.js";
+import acheivementRouter from "./routes/acheivementsRouter.js"
 
 
 const app =express();
@@ -41,6 +42,7 @@ app.use("/api/v1/timeline", timelineRouter);
 app.use("/api/v1/softwareapplication", softwareApplicationRouter);
 app.use("/api/v1/skill", skillRouter);
 app.use("/api/v1/project", projectRouter);
+app.use("/api/v1/acheivement", acheivementRouter);
 
 
 // database connection
