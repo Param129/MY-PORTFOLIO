@@ -303,7 +303,7 @@ const Dashboard = () => {
                         ) : (
                           <TableRow>
                             <TableCell className="text-3xl overflow-y-hidden">
-                              You have not added any skill.
+                              You have not added any Software.
                             </TableCell>
                           </TableRow>
                         )}

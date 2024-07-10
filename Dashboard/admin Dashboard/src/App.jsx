@@ -5,9 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getUser } from "./store/slices/userSlice";
-
-
-
+import {getAllMessages} from "./store/slices/messageSlice"
+import {getAllTimeline} from "./store/slices/timelineSlice"
+import {getAllProjects} from "./store/slices/projectSlice";
+import {getAllSkills} from "./store/slices/skillSlice";
+import {getAllSoftwareApplications} from "./store/slices/softwareApplicationSlice"
 
 
 
@@ -30,11 +32,11 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getUser()); // now if we refresh then user remain in loaduser 
-    // dispatch(getAllSkills());
-    // dispatch(getAllSoftwareApplications());
-    // dispatch(getAllTimeline());
-    // dispatch(getAllMessages());
-    // dispatch(getAllProjects());
+    dispatch(getAllSkills());
+    dispatch(getAllSoftwareApplications());
+    dispatch(getAllTimeline());
+    dispatch(getAllMessages());
+    dispatch(getAllProjects());
   }, []);
 
   return (
