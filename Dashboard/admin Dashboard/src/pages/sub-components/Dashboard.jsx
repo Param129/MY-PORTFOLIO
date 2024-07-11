@@ -33,6 +33,7 @@ import { toast } from "react-toastify";
 import SpecialLoadingButton from "./SpecialLoadingButton";
 import { clearAllTimelineErrors } from "@/store/slices/timelineSlice";
 import { clearAllProjectErrors } from "@/store/slices/projectSlice";
+import { clearAllAcheivementErrors, deleteAcheivement, getAllAcheivements, resetAcheivementSlice } from "@/store/slices/acheivementslice";
 const Dashboard = () => {
   const navigateTo = useNavigate();
   const gotoMangeSkills = () => {
@@ -40,6 +41,9 @@ const Dashboard = () => {
   };
   const gotoMangeTimeline = () => {
     navigateTo("/manage/timeline");
+  };
+  const gotoManageAchivements = () => {
+    navigateTo("/manage/acheivements");
   };
   const gotoMangeProjects = () => {
     navigateTo("/manage/projects");
@@ -52,6 +56,12 @@ const Dashboard = () => {
     error: skillError,
     message: skillMessage,
   } = useSelector((state) => state.skill);
+  const {
+    Acheivements,
+    loading: acheivementLoading,
+    error: acheivementError,
+    message: acheivementMessage,
+  } = useSelector((state) => state.acheivement);
   const {
     softwareApplications,
     loading: appLoading,
@@ -72,6 +82,11 @@ const Dashboard = () => {
   const handleDeleteSoftwareApp = (id) => {
     setAppId(id);
     dispatch(deleteSoftwareApplication(id));
+  };
+  const [achievmentId, setachievementId] = useState(null);
+  const handleDeleteachievemnt= (id) => {
+    setachievementId(id);
+    dispatch(deleteAcheivement(id));
   };
 
   const dispatch = useDispatch();
@@ -98,11 +113,26 @@ const Dashboard = () => {
       toast.error(timelineError);
       dispatch(clearAllTimelineErrors());
     }
+    if (acheivementError) {
+      toast.error(acheivementError);
+      dispatch(clearAllAcheivementErrors());
+    }
+
+    if(acheivementMessage){
+      toast.success(acheivementMessage);
+      setachievementId(null);
+      dispatch(resetAcheivementSlice());
+      dispatch(getAllAcheivements());
+    }
+
   }, [
     dispatch,
     skillLoading,
     skillError,
     skillMessage,
+    acheivementMessage,
+    acheivementLoading,
+    acheivementError,
     appLoading,
     appError,
     appMessage,
@@ -248,6 +278,65 @@ const Dashboard = () => {
                 </Card>
               </TabsContent>
             </Tabs>
+
+            <Tabs>
+              <TabsContent>
+              <Card>
+                  <CardHeader className="px-7">
+                    <CardTitle>Achievements</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Achievments</TableHead>
+                          <TableHead className="md:table-cell text-center">
+                            Action
+                          </TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {Acheivements &&
+                        Acheivements.length > 0 ? (
+                          Acheivements.map((element) => {
+                            return (
+                              <TableRow className="bg-accent" key={element._id}>
+                                <TableCell className="font-medium">
+                                  {element.title}
+                                </TableCell>
+                                <TableCell className="md:table-cell  text-center">
+                                  {acheivementLoading && achievmentId === element._id ? (
+                                    <SpecialLoadingButton
+                                      content={"Deleting"}
+                                      width={"w-fit"}
+                                    />
+                                  ) : (
+                                    <Button
+                                      onClick={() =>
+                                        handleDeleteachievemnt(element._id)
+                                      }
+                                    >
+                                      Delete
+                                    </Button>
+                                  )}
+                                </TableCell>
+                              </TableRow>
+                            );
+                          })
+                        ) : (
+                          <TableRow>
+                            <TableCell className="text-3xl overflow-y-hidden">
+                              You have not added any Achievments.
+                            </TableCell>
+                          </TableRow>
+                        )}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+
             <Tabs>
               <TabsContent className="grid min-[1050px]:grid-cols-2 gap-4">
                 <Card>

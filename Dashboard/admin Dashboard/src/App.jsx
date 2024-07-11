@@ -10,6 +10,7 @@ import {getAllTimeline} from "./store/slices/timelineSlice"
 import {getAllProjects} from "./store/slices/projectSlice";
 import {getAllSkills} from "./store/slices/skillSlice";
 import {getAllSoftwareApplications} from "./store/slices/softwareApplicationSlice"
+import {getAllAcheivements} from "./store/slices/acheivementslice"
 
 
 
@@ -24,6 +25,8 @@ import ManageTimeline from './pages/ManageTimeline'
 import ManageProjects from './pages/ManageProjects'
 import ViewProject from './pages/ViewProject'
 import UpdateProject from './pages/UpdateProject'
+import ManageAcheivements from './pages/ManageAcheivements';
+
 import "./App.css"
 
 const App = () => {
@@ -37,6 +40,7 @@ const App = () => {
     dispatch(getAllTimeline());
     dispatch(getAllMessages());
     dispatch(getAllProjects());
+    dispatch(getAllAcheivements())
   }, []);
 
   return (
@@ -51,6 +55,7 @@ const App = () => {
           <Route path="/manage/projects" element={<ManageProjects/>}/>
           <Route path="/view/project/:id" element={<ViewProject/>} />
           <Route path="/update/project/:id" element={<UpdateProject/>}/>
+          <Route path="/manage/acheivements" element={<ManageAcheivements/>}/>
       </Routes>
       <ToastContainer position="bottom-right" theme="dark" />
   </Router>

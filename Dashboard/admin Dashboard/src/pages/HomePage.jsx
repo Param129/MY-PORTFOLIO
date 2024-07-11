@@ -30,6 +30,7 @@ import { logout } from "@/store/slices/userSlice";
 import { toast } from "react-toastify";
 import Messages from "./sub-components/Messages";
 import AddTimeline from "./sub-components/AddTimeline";
+import AddAcheivements from "./sub-components/AddAcheivements";
 
 const HomePage = () => {
   const [active, setActive] = useState("");
@@ -150,6 +151,27 @@ const HomePage = () => {
               <TooltipContent side="right">Add Timeline</TooltipContent>
             </Tooltip>
           </TooltipProvider>
+
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  className={`flex h-9 w-9 items-center justify-center rounded-lg ${
+                    active === "Add Acheivements"
+                      ? "text-accent-foreground bg-accent"
+                      : "text-muted-foreground"
+                  }  transition-colors hover:text-foreground md:h-8 md:w-8`}
+                  onClick={() => setActive("Add Acheivements")}
+                >
+                  <PencilRuler className="h-5 w-5" />
+                  <span className="sr-only">Add Acheivement</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">Add Acheivement</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -287,6 +309,18 @@ const HomePage = () => {
                 <History className="h-5 w-5" />
                 Timeline
               </Link>
+
+              <Link
+                className={`flex items-center gap-4 px-2.5 ${
+                  active === "Acheivements"
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground "
+                }`}
+                onClick={() => setActive("Achivements")}
+              >
+                <History className="h-5 w-5" />
+                Acheivements
+              </Link>
               <Link
                 className={`flex items-center gap-4 px-2.5 ${
                   active === "Messages"
@@ -338,6 +372,9 @@ const HomePage = () => {
             break;
           case "Add Timeline":
             return <AddTimeline />;
+            break;
+          case "Add Acheivements":
+            return <AddAcheivements/>;
             break;
           case "Messages":
             return <Messages />;

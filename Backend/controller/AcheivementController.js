@@ -1,6 +1,6 @@
 import { catchAsyncErrors } from "../middlewares/catchAsyncError.js";
 import ErrorHandler from "../middlewares/error.js";
-import { Acheivement } from "../models/acheivementsSchema.js";
+import { Acheivement } from "../models/acheivementsSchema.js"
 
 
 export const addNewAcheivement = catchAsyncErrors(async (req, res, next) => {
@@ -10,13 +10,13 @@ export const addNewAcheivement = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Please enter title!", 400));
   }
   
-  const Acheivement = await Acheivement.create({
+  const acheivement = await Acheivement.create({
     title,
   });
   res.status(201).json({
     success: true,
     message: "New Acheivement Added",
-    Acheivement,
+    acheivement,
   });
 });
 
@@ -24,8 +24,8 @@ export const addNewAcheivement = catchAsyncErrors(async (req, res, next) => {
 
 export const deleteAcheivement = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
-  let Acheivement = await Acheivement.findById(id);
-  if (!Acheivement) {
+  let acheivement = await Acheivement.findById(id);
+  if (!acheivement) {
     return next(new ErrorHandler("Already Deleted!", 404));
   }
 
